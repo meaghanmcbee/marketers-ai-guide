@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Before They Do | AI Tools for Marketers</title>
+<meta name="description" content="The no-BS guide for experienced marketers learning AI tools. Master Claude, ChatGPT, Gemini & Copilot before your manager replaces you with them.">
+<meta name="keywords" content="AI tools for marketers, Claude for marketing, ChatGPT marketing prompts, Gemini Copilot marketing, AI content marketing, marketing automation AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-white: #f5f0e8;
+    --cream: #fdf8f0;
+    --acid-yellow: #d4ff00;
+    --hot-pink: #ff1f8e;
+    --electric-blue: #0033ff;
+    --neon-green: #00ff88;
+    --orange: #ff6600;
+    --purple: #7b00ff;
+    --bg: var(--cream);
+    --text: var(--black);
+    --border: var(--black);
+    --card-bg: #fff;
+    --mono: 'Space Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    cursor: default;
+  }
+
+  /* SCANLINE OVERLAY */
+  body::before {
+    content:'';
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px);
+    pointer-events:none;
+    z-index:9999;
+  }
+
+  /* NAV */
+  nav {
+    position:sticky;
+    top:0;
+    z-index:100;
+    background: var(--black);
+    border-bottom: 3px solid var(--acid-yellow);
+    padding: 0 2rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-weight:700;
+    font-size:13px;
+    color: var(--acid-yellow);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding: 1rem 0;
+    white-space:nowrap;
+  }
+  .nav-logo span { color: var(--hot-pink); }
+  .nav-links {
+    display:flex;
+    gap:0;
+    list-style:none;
+    flex-wrap:wrap;
+  }
+  .nav-links a {
+    display:block;
+    padding: 1.1rem 1rem;
+    font-family: var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color: var(--off-white);
+    text-decoration:none;
+    transition: background 0.15s, color 0.15s;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-links a:hover { background: var(--acid-yellow); color: var(--black); }
+  .nav-links a.active { background: var(--hot-pink); color: #fff; }
+
+  /* PAGES */
+  .page { display:none; animation: fadeIn 0.3s ease; }
+  .page.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    color: var(--off-white);
+    padding: 5rem 2rem 4rem;
+    border-bottom: 4px solid var(--acid-yellow);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+    max-width:1200px;
+    margin:0 auto;
+    align-items:center;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    color: var(--hot-pink);
+    margin-bottom:1.5rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .hero-eyebrow::before { content:'►'; font-size:8px; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight:800;
+    font-size:clamp(2.5rem, 5vw, 4.5rem);
+    line-height:1;
+    letter-spacing:-2px;
+    margin-bottom:1.5rem;
+  }
+  .hero h1 .accent { color: var(--acid-yellow); display:block; }
+  .hero h1 .accent2 { color: var(--hot-pink); }
+  .hero-sub {
+    font-size:1.1rem;
+    color: rgba(245,240,232,0.7);
+    margin-bottom:2rem;
+    max-width:500px;
+    line-height:1.7;
+  }
+  .btn-group { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn {
+    font-family: var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding: 0.9rem 1.75rem;
+    border: 2px solid currentColor;
+    text-decoration:none;
+    display:inline-block;
+    cursor:pointer;
+    transition: all 0.15s;
+    position:relative;
+  }
+  .btn-primary {
+    background: var(--acid-yellow);
+    color: var(--black);
+    border-color: var(--acid-yellow);
+  }
+  .btn-primary:hover { background: var(--black); color: var(--acid-yellow); }
+  .btn-outline {
+    background: transparent;
+    color: var(--off-white);
+    border-color: var(--off-white);
+  }
+  .btn-outline:hover { background: var(--off-white); color: var(--black); }
+
+  /* HERO STATS BOX */
+  .hero-stats {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background: var(--acid-yellow);
+    border: 2px solid var(--acid-yellow);
+  }
+  .stat-box {
+    background: var(--black);
+    padding: 1.5rem;
+    text-align:center;
+  }
+  .stat-num {
+    font-family: var(--display);
+    font-weight:800;
+    font-size:2.5rem;
+    color: var(--acid-yellow);
+    display:block;
+    line-height:1;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color: rgba(245,240,232,0.6);
+    margin-top:0.4rem;
+    display:block;
+  }
+  .stat-source {
+    font-size:9px;
+    color: rgba(245,240,232,0.3);
+    margin-top:0.25rem;
+    display:block;
+  }
+
+  /* TICKER */
+  .ticker {
+    background: var(--hot-pink);
+    color: #fff;
+    overflow:hidden;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid var(--black);
+  }
+  .ticker-track {
+    display:inline-block;
+    white-space:nowrap;
+    animation: ticker 30s linear infinite;
+    font-family: var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+  }
+  @keyframes ticker {
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .ticker-item { margin:0 3rem; }
+  .ticker-item::before { content:'★ '; }
+
+  /* SECTION BASICS */
+  section { padding: 5rem 2rem; }
+  .container { max-width:1200px; margin:0 auto; }
+  .section-label {
+    font-family: var(--mono);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    color: var(--hot-pink);
+    margin-bottom:1rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .section-label::before { content:'//'; opacity:0.5; }
+  h2 {
+    font-family: var(--display);
+    font-weight:800;
+    font-size:clamp(1.8rem,3vw,3rem);
+    letter-spacing:-1px;
+    margin-bottom:1rem;
+    line-height:1.1;
+  }
+  h3 { font-family: var(--display); font-weight:600; font-size:1.3rem; margin-bottom:0.75rem; }
+  p { line-height:1.7; }
+
+  /* BORDER BOX */
+  .border-box {
+    border: 2px solid var(--black);
+    background: var(--card-bg);
+    padding:2rem;
+    position:relative;
+  }
+  .border-box::after {
+    content:'';
+    position:absolute;
+    bottom:-5px;right:-5px;
+    width:100%;height:100%;
+    border: 2px solid var(--black);
+    z-index:-1;
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap:1.5rem;
+    margin-top:2.5rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 2px solid var(--black);
+    padding:1.75rem;
+    position:relative;
+    transition: transform 0.15s;
+  }
+  .card:hover { transform: translate(-3px,-3px); }
+  .card::after {
+    content:'';
+    position:absolute;
+    bottom:-4px;right:-4px;
+    width:100%;height:100%;
+    background: var(--black);
+    z-index:-1;
+    transition: transform 0.15s;
+  }
+  .card:hover::after { transform: translate(1px,1px); }
+  .card-tag {
+    font-family: var(--mono);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding: 3px 8px;
+    background: var(--black);
+    color: var(--acid-yellow);
+    display:inline-block;
+    margin-bottom:1rem;
+  }
+
+  /* TOOL CARDS */
+  .tool-card { cursor:pointer; }
+  .tool-logo {
+    width:48px;height:48px;
+    border: 2px solid var(--black);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-weight:700;font-size:13px;
+    margin-bottom:1rem;
+  }
+  .tool-logo.claude { background:#d97c52; color:#fff; }
+  .tool-logo.chatgpt { background:#10a37f; color:#fff; }
+  .tool-logo.gemini { background:#4285f4; color:#fff; }
+  .tool-logo.copilot { background:#0078d4; color:#fff; }
+  .tool-best { font-size:13px; color:#555; margin-top:0.75rem; line-height:1.5; }
+  .tool-tag-list { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1rem; }
+  .tool-tag {
+    font-family:var(--mono);
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:3px 8px;
+    border:1px solid var(--black);
+  }
+  .tag-writing { border-color: var(--hot-pink); color: var(--hot-pink); }
+  .tag-analysis { border-color: var(--electric-blue); color: var(--electric-blue); }
+  .tag-strategy { border-color: var(--purple); color: var(--purple); }
+  .tag-research { border-color: var(--orange); color: var(--orange); }
+  .tag-images { border-color: var(--neon-green); color: #007744; }
+  .tag-docs { border-color: #888; color: #555; }
+
+  /* PROOF POINTS STRIP */
+  .proof-strip {
+    background: var(--black);
+    color: var(--off-white);
+    padding: 4rem 2rem;
+    border-top: 4px solid var(--acid-yellow);
+    border-bottom: 4px solid var(--acid-yellow);
+  }
+  .proof-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:2rem;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .proof-item { border-left: 3px solid var(--hot-pink); padding-left:1.25rem; }
+  .proof-stat {
+    font-family:var(--display);
+    font-weight:800;
+    font-size:2.8rem;
+    color: var(--acid-yellow);
+    line-height:1;
+    display:block;
+  }
+  .proof-desc { font-size:14px; color: rgba(245,240,232,0.75); margin-top:0.3rem; }
+  .proof-cite { font-family:var(--mono); font-size:9px; color:rgba(245,240,232,0.35); margin-top:0.3rem; display:block; }
+
+  /* PROMPT TEMPLATES */
+  .prompt-box {
+    background: #111;
+    border: 2px solid var(--acid-yellow);
+    padding:1.5rem;
+    margin:1rem 0;
+    position:relative;
+    font-family:var(--mono);
+    font-size:13px;
+    color: var(--off-white);
+    line-height:1.7;
+    border-radius:0;
+  }
+  .prompt-box .prompt-label {
+    position:absolute;
+    top:-1px;left:1rem;
+    transform:translateY(-50%);
+    background:var(--acid-yellow);
+    color:var(--black);
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    padding:2px 10px;
+    font-weight:700;
+  }
+  .prompt-box .var { color: var(--hot-pink); font-style:italic; }
+  .copy-btn {
+    position:absolute;
+    bottom:0.75rem;right:0.75rem;
+    font-family:var(--mono);
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    background:transparent;
+    border:1px solid rgba(245,240,232,0.3);
+    color:rgba(245,240,232,0.5);
+    padding:4px 10px;
+    cursor:pointer;
+    transition:all 0.15s;
+  }
+  .copy-btn:hover { border-color:var(--acid-yellow); color:var(--acid-yellow); }
+
+  /* TABS */
+  .tab-nav {
+    display:flex;
+    gap:0;
+    border-bottom:2px solid var(--black);
+    margin-bottom:2rem;
+    flex-wrap:wrap;
+  }
+  .tab-btn {
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:0.75rem 1.25rem;
+    background:transparent;
+    border:none;
+    border-right:1px solid var(--black);
+    cursor:pointer;
+    color:#777;
+    transition:all 0.15s;
+  }
+  .tab-btn.active { background:var(--black); color:var(--acid-yellow); }
+  .tab-btn:hover:not(.active) { background:var(--off-white); color:var(--black); }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; animation:fadeIn 0.2s ease; }
+
+  /* BLOG */
+  .blog-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:2rem;
+    margin-top:2.5rem;
+  }
+  .blog-card {
+    border:2px solid var(--black);
+    background:var(--card-bg);
+    cursor:pointer;
+    transition:transform 0.15s;
+    position:relative;
+  }
+  .blog-card:hover { transform: translate(-3px,-3px); }
+  .blog-card::after {
+    content:'';position:absolute;bottom:-4px;right:-4px;
+    width:100%;height:100%;background:var(--black);z-index:-1;
+  }
+  .blog-card-img {
+    height:160px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:800;font-size:3rem;
+    border-bottom:2px solid var(--black);
+    letter-spacing:-3px;
+  }
+  .blog-card-body { padding:1.25rem; }
+  .blog-role-tag {
+    font-family:var(--mono);font-size:9px;
+    text-transform:uppercase;letter-spacing:2px;
+    display:inline-block;padding:3px 8px;margin-bottom:0.75rem;
+  }
+  .blog-card h3 { font-size:1.1rem; margin-bottom:0.5rem; }
+  .blog-card p { font-size:13px; color:#555; }
+  .read-more {
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;
+    letter-spacing:1px;color:var(--black);margin-top:1rem;display:inline-block;
+    border-bottom:2px solid var(--black);padding-bottom:1px;
+  }
+
+  /* ABOUT */
+  .about-grid { display:grid; grid-template-columns:1fr 2fr; gap:4rem; align-items:start; }
+  .about-avatar {
+    background:var(--black);
+    aspect-ratio:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:var(--mono);color:var(--acid-yellow);text-align:center;
+    font-size:12px;text-transform:uppercase;letter-spacing:2px;
+    border:3px solid var(--black);position:relative;
+  }
+  .avatar-initials {
+    font-family:var(--display);font-weight:800;font-size:4rem;color:var(--acid-yellow);
+    display:block;line-height:1;margin-bottom:0.5rem;
+  }
+  .cred-list { list-style:none; margin-top:1.5rem; }
+  .cred-list li {
+    font-size:14px;padding:0.6rem 0;border-bottom:1px solid rgba(0,0,0,0.1);
+    display:flex;gap:0.75rem;align-items:flex-start;
+  }
+  .cred-list li::before { content:'✓'; color:var(--hot-pink); font-weight:700; flex-shrink:0; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background:var(--off-white);
+    border:2px solid var(--black);
+    border-left:5px solid var(--electric-blue);
+    padding:1rem 1.5rem;
+    margin:2rem 0;
+    font-size:13px;
+    font-family:var(--mono);
+  }
+  .disclaimer strong { font-size:10px; text-transform:uppercase; letter-spacing:2px; display:block; margin-bottom:0.25rem; color:var(--electric-blue); }
+
+  /* COMPARISON TABLE */
+  .compare-table-wrap { overflow-x:auto; margin-top:2rem; }
+  table.compare {
+    width:100%;border-collapse:collapse;
+    font-size:14px;
+  }
+  table.compare th {
+    background:var(--black);color:var(--acid-yellow);
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;
+    padding:0.75rem 1rem;text-align:left;border:1px solid var(--black);
+  }
+  table.compare td {
+    padding:0.75rem 1rem;border:1px solid #ddd;vertical-align:top;
+  }
+  table.compare tr:nth-child(even) td { background:#f9f7f3; }
+  table.compare .check { color:var(--neon-green); filter:brightness(0.6); font-weight:700; }
+  table.compare .partial { color:var(--orange); }
+  table.compare .x { color:#ccc; }
+
+  /* PRINCIPLES */
+  .principle {
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:1.5rem;
+    align-items:start;
+    padding:1.75rem 0;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+  }
+  .principle-num {
+    font-family:var(--display);font-weight:800;font-size:2rem;
+    color:var(--acid-yellow);
+    background:var(--black);
+    width:40px;height:40px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    font-size:1.1rem;
+  }
+
+  /* TEMPLATE CARDS */
+  .template-grid {
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:1.5rem;margin-top:2rem;
+  }
+  .template-card {
+    background:var(--card-bg);border:2px solid var(--black);
+    overflow:hidden;position:relative;
+  }
+  .template-card::after {
+    content:'';position:absolute;bottom:-4px;right:-4px;
+    width:100%;height:100%;background:var(--black);z-index:-1;
+  }
+  .template-header {
+    background:var(--black);padding:1rem 1.25rem;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .template-header span {
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;
+    letter-spacing:2px;color:var(--acid-yellow);
+  }
+  .template-body { padding:1.25rem; }
+  .template-body p { font-size:13px;color:#444;margin-bottom:1rem; }
+
+  /* FOOTER */
+  footer {
+    background:var(--black);color:var(--off-white);
+    padding:3rem 2rem;
+    border-top:4px solid var(--hot-pink);
+  }
+  .footer-grid { display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto; }
+  .footer-brand { font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--acid-yellow);margin-bottom:0.75rem;font-weight:700; }
+  .footer-desc { font-size:13px;color:rgba(245,240,232,0.55);line-height:1.7; }
+  .footer-heading { font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--hot-pink);margin-bottom:1rem; }
+  .footer-links { list-style:none; }
+  .footer-links li a { color:rgba(245,240,232,0.6);text-decoration:none;font-size:13px;display:block;padding:0.2rem 0;transition:color 0.15s; }
+  .footer-links li a:hover { color:var(--acid-yellow); }
+  .footer-bottom { max-width:1200px;margin:2rem auto 0;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(245,240,232,0.3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem; }
+
+  /* TOOL DETAIL OVERLAY */
+  .tool-overlay {
+    display:none;
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:rgba(10,10,10,0.92);
+    z-index:200;
+    overflow-y:auto;
+    padding:2rem;
+  }
+  .tool-overlay.open { display:flex;align-items:flex-start;justify-content:center; }
+  .tool-detail {
+    background:var(--cream);
+    max-width:800px;width:100%;
+    border:3px solid var(--acid-yellow);
+    padding:2.5rem;
+    position:relative;
+    margin:2rem auto;
+  }
+  .close-btn {
+    position:absolute;top:1rem;right:1rem;
+    font-family:var(--mono);font-size:12px;
+    background:var(--black);color:var(--acid-yellow);
+    border:none;padding:0.4rem 0.75rem;cursor:pointer;
+    text-transform:uppercase;letter-spacing:1px;
+  }
+
+  /* ACCORDION */
+  .accordion-item { border-bottom:1px solid rgba(0,0,0,0.15); }
+  .accordion-header {
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.25rem 0;cursor:pointer;
+    font-family:var(--display);font-weight:600;font-size:1.05rem;
+  }
+  .accordion-header:hover { color:var(--hot-pink); }
+  .accordion-icon { font-family:var(--mono);font-size:1.2rem;color:var(--hot-pink); transition:transform 0.2s; }
+  .accordion-body { display:none;padding:0 0 1.25rem; font-size:14px;line-height:1.8;color:#444; }
+  .accordion-body.open { display:block;animation:fadeIn 0.2s ease; }
+  .accordion-item.open .accordion-icon { transform:rotate(45deg); }
+
+  /* PROCESS STEPS */
+  .process-steps { counter-reset:step; margin:1.5rem 0; }
+  .process-step {
+    display:grid;grid-template-columns:48px 1fr;gap:1rem;
+    align-items:start;padding:1rem 0;border-bottom:1px solid rgba(0,0,0,0.08);
+  }
+  .step-num {
+    counter-increment:step;
+    background:var(--hot-pink);color:#fff;
+    width:36px;height:36px;
+    font-family:var(--mono);font-weight:700;font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .step-content h4 { font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:0.25rem; }
+  .step-content p { font-size:13px;color:#555; }
+
+  /* PILL */
+  .pill {
+    display:inline-flex;align-items:center;gap:0.4rem;
+    background:rgba(0,0,0,0.06);
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;
+    padding:4px 10px;
+    margin:0.25rem;
+  }
+  .pill.warning { background:rgba(255,102,0,0.1);color:var(--orange); }
+  .pill.ok { background:rgba(0,255,136,0.1);color:#007744; }
+
+  /* ROLE BADGE */
+  .role-badge {
+    display:inline-block;
+    font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:2px;
+    padding:5px 12px;border:2px solid var(--black);margin-right:0.5rem;margin-bottom:0.5rem;
+    cursor:pointer;transition:all 0.15s;
+  }
+  .role-badge.active, .role-badge:hover { background:var(--black);color:var(--acid-yellow); }
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .hero-grid{grid-template-columns:1fr;gap:2rem;}
+    .about-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    nav{flex-wrap:wrap;}
+    .nav-links{display:none;}
+    .hero-stats{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>Prompt</span>Before<span>They</span>Do</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a href="#" onclick="showPage('tools')" id="nav-tools">The Tools</a></li>
+    <li><a href="#" onclick="showPage('prompts')" id="nav-prompts">Prompt Templates</a></li>
+    <li><a href="#" onclick="showPage('workflows')" id="nav-workflows">Workflows</a></li>
+    <li><a href="#" onclick="showPage('blog')" id="nav-blog">Resources</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+  </ul>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">88% of marketers now use AI daily</span>
+    <span class="ticker-item">AI saves marketers 5+ hours per week</span>
+    <span class="ticker-item">73% of marketing teams now use generative AI</span>
+    <span class="ticker-item">AI users are 25% more likely to report success</span>
+    <span class="ticker-item">nearly 60% of marketers fear AI will replace their jobs</span>
+    <span class="ticker-item">Learn the tools. Before they learn you.</span>
+    <span class="ticker-item">88% of marketers now use AI daily</span>
+    <span class="ticker-item">AI saves marketers 5+ hours per week</span>
+    <span class="ticker-item">73% of marketing teams now use generative AI</span>
+    <span class="ticker-item">AI users are 25% more likely to report success</span>
+    <span class="ticker-item">nearly 60% of marketers fear AI will replace their jobs</span>
+    <span class="ticker-item">Learn the tools. Before they learn you.</span>
+  </div>
+</div>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">For experienced marketers, by an experienced marketer</div>
+        <h1>
+          Learn them
+          <span class="accent">before they</span>
+          learn <span class="accent2">you.</span>
+        </h1>
+        <p class="hero-sub">Your company just handed you Claude, Copilot, Gemini, and ChatGPT. Your manager is watching. This is your no-BS, zero-fluff guide to actually using AI — built by a 16-year content marketing veteran who has tested all of it.</p>
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary" onclick="showPage('prompts')">Get Prompt Templates</a>
+          <a href="#" class="btn btn-outline" onclick="showPage('tools')">Compare the Tools</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <span class="stat-num">88%</span>
+            <span class="stat-label">of marketers use AI daily</span>
+            <span class="stat-source">SurveyMonkey, 2025</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">5h+</span>
+            <span class="stat-label">saved per marketer per week</span>
+            <span class="stat-source">CoSchedule, 2025</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">60%</span>
+            <span class="stat-label">fear AI will replace them</span>
+            <span class="stat-source">InfluencerMktg Hub, 2024</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">25%</span>
+            <span class="stat-label">more likely to succeed</span>
+            <span class="stat-source">CoSchedule, 2025</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:rgba(245,240,232,0.3);font-family:var(--mono);margin-top:0.75rem;text-align:center;">All statistics sourced from verified industry surveys. See citations throughout.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY SECTION -->
+  <section style="background:var(--cream);">
+    <div class="container">
+      <div class="section-label">The reality check</div>
+      <h2>The gap is closing. Fast.</h2>
+      <p style="max-width:700px;color:#444;margin-bottom:3rem;font-size:1.05rem;">You've built your career on great instincts, strong writing, and knowing your audience. Good news: none of that goes away. The marketers winning with AI aren't the ones who handed over the wheel — they're the ones who know exactly which tasks to delegate, and which ones need a human at the helm.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+        <div>
+          <div class="disclaimer">
+            <strong>From Anthropic's own guidance on using AI well</strong>
+            AI works best when you already know what "good" looks like. Before you prompt, know the output you want. You are the editor. Always.
+          </div>
+          <div class="principle">
+            <div class="principle-num">1</div>
+            <div>
+              <h3>Know what good looks like first</h3>
+              <p style="font-size:14px;color:#555;">If you can't spot a bad output, you can't improve a good one. Your 16 years of experience is your competitive advantage over someone who just started using AI with no marketing background.</p>
+            </div>
+          </div>
+          <div class="principle">
+            <div class="principle-num">2</div>
+            <div>
+              <h3>Start with the right use cases</h3>
+              <p style="font-size:14px;color:#555;">Not everything belongs in an AI prompt. The sweet spot is high-volume, repeatable tasks where you can verify quality quickly: first drafts, data summaries, ideation, repurposing.</p>
+            </div>
+          </div>
+          <div class="principle">
+            <div class="principle-num">3</div>
+            <div>
+              <h3>Treat it like a very capable intern</h3>
+              <p style="font-size:14px;color:#555;">Give it context. Give it examples. Tell it the format you want, the audience, the tone. Vague in = vague out. Specific in = specific out.</p>
+            </div>
+          </div>
+          <div class="principle">
+            <div class="principle-num">4</div>
+            <div>
+              <h3>Never ship without editing</h3>
+              <p style="font-size:14px;color:#555;">AI can hallucinate facts. It doesn't know your brand voice until you teach it. Every output is a draft — your name is on the final version.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="border-box">
+            <div class="card-tag">Low-hanging fruit for marketers</div>
+            <p style="font-size:14px;color:#444;margin-bottom:1.5rem;">These are the use cases where AI delivers the fastest, most reliable returns — and where your expertise makes the difference between mediocre and excellent.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
+              <span class="pill ok">✓ First draft copy</span>
+              <span class="pill ok">✓ Email subject line variations</span>
+              <span class="pill ok">✓ Repurposing long content</span>
+              <span class="pill ok">✓ Analytics summaries</span>
+              <span class="pill ok">✓ SEO brief writing</span>
+              <span class="pill ok">✓ Competitive research</span>
+              <span class="pill ok">✓ Social caption variations</span>
+              <span class="pill ok">✓ Meeting notes &amp; recaps</span>
+              <span class="pill ok">✓ Creative brainstorming</span>
+              <span class="pill warning">⚠ Brand strategy (review carefully)</span>
+              <span class="pill warning">⚠ Thought leadership (add your voice)</span>
+              <span class="pill warning">⚠ Sensitive messaging (always review)</span>
+            </div>
+            <p style="font-size:13px;color:#777;">The ⚠ items are great starting points — just expect to do more editing and bring more of yourself to the output.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <div class="proof-strip">
+    <div class="proof-grid">
+      <div class="proof-item">
+        <span class="proof-stat">83%</span>
+        <span class="proof-desc">of marketers using AI reported increased productivity</span>
+        <span class="proof-cite">CoSchedule State of AI in Marketing, 2025 (1,005 respondents)</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-stat">79%</span>
+        <span class="proof-desc">highlight AI's role in streamlining processes &amp; boosting efficiency</span>
+        <span class="proof-cite">CoSchedule State of AI in Marketing, 2025</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-stat">73%</span>
+        <span class="proof-desc">of marketing teams now actively use generative AI</span>
+        <span class="proof-cite">Gartner via Search Engine Journal, 2025 (418 marketing leaders)</span>
+      </div>
+      <div class="proof-item">
+        <span class="proof-stat">72%</span>
+        <span class="proof-desc">cited lack of understanding as main barrier to AI adoption</span>
+        <span class="proof-cite">InfluencerMarketing Hub Benchmark Report, 2024 (1,290 marketers)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOOL PREVIEW -->
+  <section>
+    <div class="container">
+      <div class="section-label">The tools</div>
+      <h2>Four tools. One guide.</h2>
+      <p style="color:#555;max-width:600px;margin-bottom:0.5rem;">Your company probably issued you some combination of these. Here's a fast-track comparison — click any card for the full breakdown.</p>
+      <div class="cards-grid">
+        <div class="card tool-card" onclick="showPage('tools');showTool('claude')">
+          <div class="tool-logo claude">AI</div>
+          <div class="card-tag">Anthropic</div>
+          <h3>Claude</h3>
+          <p class="tool-best">The long-form thinker. Exceptional for complex writing tasks, nuanced editing, and working through strategy. Known for following instructions precisely and staying on-brand.</p>
+          <div class="tool-tag-list">
+            <span class="tool-tag tag-writing">Writing</span>
+            <span class="tool-tag tag-strategy">Strategy</span>
+            <span class="tool-tag tag-analysis">Analysis</span>
+          </div>
+        </div>
+        <div class="card tool-card" onclick="showPage('tools');showTool('chatgpt')">
+          <div class="tool-logo chatgpt">GPT</div>
+          <div class="card-tag">OpenAI</div>
+          <h3>ChatGPT</h3>
+          <p class="tool-best">The versatile generalist. Great for brainstorming, rapid ideation, and interactive back-and-forth refinement. The most widely recognized tool — good for team training buy-in.</p>
+          <div class="tool-tag-list">
+            <span class="tool-tag tag-writing">Writing</span>
+            <span class="tool-tag tag-research">Research</span>
+            <span class="tool-tag tag-images">Images</span>
+          </div>
+        </div>
+        <div class="card tool-card" onclick="showPage('tools');showTool('gemini')">
+          <div class="tool-logo gemini">G</div>
+          <div class="card-tag">Google</div>
+          <h3>Gemini</h3>
+          <p class="tool-best">The Google ecosystem native. Lives inside Docs, Sheets, Gmail, and Slides. Best for marketers who live in Google Workspace and want AI woven into existing workflows.</p>
+          <div class="tool-tag-list">
+            <span class="tool-tag tag-docs">Docs/Sheets</span>
+            <span class="tool-tag tag-research">Research</span>
+            <span class="tool-tag tag-analysis">Analysis</span>
+          </div>
+        </div>
+        <div class="card tool-card" onclick="showPage('tools');showTool('copilot')">
+          <div class="tool-logo copilot">M</div>
+          <div class="card-tag">Microsoft</div>
+          <h3>Copilot</h3>
+          <p class="tool-best">The Microsoft Office native. Deeply integrated with Word, PowerPoint, Excel, Teams, and Outlook. If your company runs on Microsoft 365, this is already in your toolbar.</p>
+          <div class="tool-tag-list">
+            <span class="tool-tag tag-docs">Office Suite</span>
+            <span class="tool-tag tag-writing">Writing</span>
+            <span class="tool-tag tag-analysis">Data</span>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="#" class="btn btn-primary" onclick="showPage('tools')">Full Tool Comparison →</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ==================== TOOLS PAGE ==================== -->
+<div id="page-tools" class="page">
+  <section style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-label">The tools breakdown</div>
+      <h2>Know Your Toolkit</h2>
+      <p style="color:#555;max-width:700px;margin-bottom:2.5rem;">Each of these tools has real strengths for marketing. The goal isn't to pick one — it's to know which one to reach for when. Click a tool below for the full breakdown, sample prompts, and what to watch out for.</p>
+
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchToolTab('claude',this)">Claude</button>
+        <button class="tab-btn" onclick="switchToolTab('chatgpt',this)">ChatGPT</button>
+        <button class="tab-btn" onclick="switchToolTab('gemini',this)">Gemini</button>
+        <button class="tab-btn" onclick="switchToolTab('copilot',this)">Copilot</button>
+        <button class="tab-btn" onclick="switchToolTab('compare',this)">Side-by-Side</button>
+      </div>
+
+      <!-- CLAUDE TAB -->
+      <div id="tool-claude" class="tab-content active">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
+          <div>
+            <div class="tool-logo claude" style="width:80px;height:80px;font-size:1.5rem;margin-bottom:1rem;">AI</div>
+            <h2 style="font-size:2rem;">Claude</h2>
+            <p style="font-size:14px;color:#555;margin-bottom:1rem;">by Anthropic</p>
+            <div style="margin-bottom:1.5rem;">
+              <div class="tool-tag-list">
+                <span class="tool-tag tag-writing">Long-form Writing</span>
+                <span class="tool-tag tag-strategy">Strategy</span>
+                <span class="tool-tag tag-analysis">Analysis</span>
+                <span class="tool-tag tag-research">Research Synthesis</span>
+              </div>
+            </div>
+            <div class="border-box" style="padding:1rem;">
+              <p style="font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--hot-pink);margin-bottom:0.5rem;">Best for</p>
+              <ul style="font-size:13px;color:#444;list-style:none;">
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Long blog posts &amp; whitepapers</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Brand voice editing</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Nuanced strategic briefs</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Analyzing documents/reports</li>
+                <li style="padding:0.25rem 0;">✓ Customer persona development</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:1.5rem;">Sample Marketing Prompts for Claude</h3>
+            <div class="prompt-box">
+              <div class="prompt-label">Content Brief</div>
+              You are a senior content strategist. I need a detailed SEO content brief for a blog post targeting the keyword "<span class="var">[keyword]</span>". My audience is <span class="var">[describe audience]</span>. Include: target keyword and 5 semantically related LSI keywords, recommended word count and structure, 3 angle options with unique POV for each, key questions the post must answer, and suggested CTAs. Our brand voice is <span class="var">[describe tone]</span>.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Email Campaign</div>
+              Write a 3-email nurture sequence for <span class="var">[product/offer]</span>. The audience has just downloaded our guide on <span class="var">[topic]</span>. Each email should build on the last. Email 1: deliver value, no pitch. Email 2: introduce the problem our product solves, soft mention. Email 3: clear CTA to <span class="var">[desired action]</span>. Keep subject lines under 50 characters. Tone: <span class="var">[conversational/professional/urgent]</span>.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Analytics Summary</div>
+              I'm going to paste in raw data from our monthly marketing report. Summarize the key findings in 3-5 bullet points for a VP audience who has 2 minutes to read this. Flag any metrics that are underperforming versus prior month. Suggest 2 actionable next steps based on the data. Here is the data: <span class="var">[paste data]</span>
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="disclaimer" style="margin-top:1.5rem;">
+              <strong>One important note</strong>
+              Claude is trained to be careful and precise — it will often push back or ask for clarification. That's a feature, not a bug. It means you can trust it to flag when a request is ambiguous.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHATGPT TAB -->
+      <div id="tool-chatgpt" class="tab-content">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
+          <div>
+            <div class="tool-logo chatgpt" style="width:80px;height:80px;font-size:1.5rem;margin-bottom:1rem;">GPT</div>
+            <h2 style="font-size:2rem;">ChatGPT</h2>
+            <p style="font-size:14px;color:#555;margin-bottom:1rem;">by OpenAI</p>
+            <div style="margin-bottom:1.5rem;">
+              <div class="tool-tag-list">
+                <span class="tool-tag tag-writing">Copywriting</span>
+                <span class="tool-tag tag-research">Research</span>
+                <span class="tool-tag tag-images">Image Gen</span>
+              </div>
+            </div>
+            <div class="border-box" style="padding:1rem;">
+              <p style="font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--hot-pink);margin-bottom:0.5rem;">Best for</p>
+              <ul style="font-size:13px;color:#444;list-style:none;">
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Quick ideation &amp; brainstorming</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Social media copy variations</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Ad copy A/B testing</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Image generation (DALL-E)</li>
+                <li style="padding:0.25rem 0;">✓ Web research (with browsing)</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:1.5rem;">Sample Marketing Prompts for ChatGPT</h3>
+            <div class="prompt-box">
+              <div class="prompt-label">Social Media Variations</div>
+              Write 10 variations of this LinkedIn post, each with a different hook: <span class="var">[paste your post]</span>. Vary the opening by: a surprising statistic, a provocative question, a counterintuitive statement, a short story opener, and a bold claim. Keep each under 150 words. Target audience: <span class="var">[B2B decision-makers / marketers / etc]</span>.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Ad Copy Testing</div>
+              I need 5 headline and 5 description variations for a Google Ad campaign for <span class="var">[product/service]</span>. The campaign goal is <span class="var">[leads/sales/awareness]</span>. Each headline must be under 30 characters. Each description under 90 characters. Focus on these 3 value propositions: <span class="var">[list them]</span>. Avoid: exclamation marks, superlatives without proof.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Competitive Research</div>
+              I want to understand how <span class="var">[competitor]</span> positions themselves against <span class="var">[our company/product category]</span>. Based on publicly available information, summarize: their main messaging angles, the audience they seem to target, what content topics they emphasize, and where they appear to have messaging gaps we could exploit.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GEMINI TAB -->
+      <div id="tool-gemini" class="tab-content">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
+          <div>
+            <div class="tool-logo gemini" style="width:80px;height:80px;font-size:1.5rem;margin-bottom:1rem;">G</div>
+            <h2 style="font-size:2rem;">Gemini</h2>
+            <p style="font-size:14px;color:#555;margin-bottom:1rem;">by Google</p>
+            <div style="margin-bottom:1.5rem;">
+              <div class="tool-tag-list">
+                <span class="tool-tag tag-docs">Google Workspace</span>
+                <span class="tool-tag tag-analysis">Data Analysis</span>
+                <span class="tool-tag tag-research">Search Integration</span>
+              </div>
+            </div>
+            <div class="border-box" style="padding:1rem;">
+              <p style="font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--hot-pink);margin-bottom:0.5rem;">Best for</p>
+              <ul style="font-size:13px;color:#444;list-style:none;">
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Google Docs drafting &amp; editing</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Google Sheets analysis</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Gmail drafting at scale</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Summarizing Docs &amp; Drive files</li>
+                <li style="padding:0.25rem 0;">✓ Google-integrated research</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:1.5rem;">Sample Marketing Prompts for Gemini</h3>
+            <div class="prompt-box">
+              <div class="prompt-label">Gmail — Outreach at Scale</div>
+              Draft a personalized outreach email to <span class="var">[type of contact: journalist/partner/prospect]</span> about <span class="var">[topic/offer]</span>. Keep it under 150 words. Open with something specific and relevant to them (I'll fill in the personalized detail). Clear ask in 1 sentence. Professional but not robotic. Subject line options: give me 3.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Google Sheets — Data Insight</div>
+              I have a Google Sheet with <span class="var">[describe columns: campaign name, spend, clicks, conversions, etc]</span>. Help me write a formula to identify the top 3 performing campaigns by cost-per-conversion. Then summarize which campaign types are underperforming and suggest which columns I should cross-reference to understand why.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Slides — Exec Summary</div>
+              Using the content from this Google Doc <span class="var">[paste or describe content]</span>, create an outline for a 6-slide executive presentation. Slide 1: headline insight. Slides 2-5: supporting data or findings, one point each. Slide 6: recommended next steps. For each slide, suggest a visual concept (chart, table, image) that would work best.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COPILOT TAB -->
+      <div id="tool-copilot" class="tab-content">
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
+          <div>
+            <div class="tool-logo copilot" style="width:80px;height:80px;font-size:1.5rem;margin-bottom:1rem;">M</div>
+            <h2 style="font-size:2rem;">Copilot</h2>
+            <p style="font-size:14px;color:#555;margin-bottom:1rem;">by Microsoft</p>
+            <div style="margin-bottom:1.5rem;">
+              <div class="tool-tag-list">
+                <span class="tool-tag tag-docs">M365 Integrated</span>
+                <span class="tool-tag tag-writing">Word/PPT</span>
+                <span class="tool-tag tag-analysis">Excel/Teams</span>
+              </div>
+            </div>
+            <div class="border-box" style="padding:1rem;">
+              <p style="font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;color:var(--hot-pink);margin-bottom:0.5rem;">Best for</p>
+              <ul style="font-size:13px;color:#444;list-style:none;">
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Word document drafting</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ PowerPoint from outline</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Excel formula help &amp; analysis</li>
+                <li style="padding:0.25rem 0;border-bottom:1px solid #eee;">✓ Teams meeting summaries</li>
+                <li style="padding:0.25rem 0;">✓ Outlook email drafting</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom:1.5rem;">Sample Marketing Prompts for Copilot</h3>
+            <div class="prompt-box">
+              <div class="prompt-label">Word — Campaign Brief</div>
+              Draft a campaign creative brief for <span class="var">[campaign name]</span>. Include: Campaign objective, primary audience, key message, supporting messages (3), tone of voice, channel plan, deliverables checklist, success metrics. Format it as a professional Word document with clear section headers. Keep each section tight — 2-4 sentences max.
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">PowerPoint — Monthly Report</div>
+              Build a PowerPoint outline for our monthly marketing report. Audience: VP of Marketing. Sections needed: Executive Summary (3 bullets), Channel Performance (comparison table), Wins This Month (2-3 items), Challenges &amp; What We Learned, Next Month's Focus. For each slide, tell me what visual would work best (chart type, table, icon-based slide).
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+            <div class="prompt-box">
+              <div class="prompt-label">Teams — Meeting Follow-Up</div>
+              Based on these meeting notes from our campaign planning call, write a follow-up email summary. Include: key decisions made, action items with owner names, deadlines agreed, and any open questions that still need answers. Keep it under 250 words. Tone: clear and direct, not overly formal. <span class="var">[paste meeting notes]</span>
+              <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARE TAB -->
+      <div id="tool-compare" class="tab-content">
+        <h3 style="margin-bottom:1.5rem;">Which tool for which task?</h3>
+        <div class="compare-table-wrap">
+          <table class="compare">
+            <thead>
+              <tr>
+                <th>Marketing Task</th>
+                <th>Claude</th>
+                <th>ChatGPT</th>
+                <th>Gemini</th>
+                <th>Copilot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Long-form blog writing</td><td class="check">★★★</td><td class="check">★★☆</td><td class="partial">★★☆</td><td class="x">★☆☆</td></tr>
+              <tr><td>Email copywriting</td><td class="check">★★★</td><td class="check">★★★</td><td class="check">★★☆</td><td class="partial">★★☆</td></tr>
+              <tr><td>Social media variations</td><td class="partial">★★☆</td><td class="check">★★★</td><td class="partial">★★☆</td><td class="x">★☆☆</td></tr>
+              <tr><td>Analytics summarization</td><td class="check">★★★</td><td class="check">★★☆</td><td class="check">★★★</td><td class="check">★★★</td></tr>
+              <tr><td>PowerPoint creation</td><td class="x">★☆☆</td><td class="partial">★★☆</td><td class="partial">★★☆</td><td class="check">★★★</td></tr>
+              <tr><td>Google Workspace tasks</td><td class="x">★☆☆</td><td class="x">★☆☆</td><td class="check">★★★</td><td class="x">★☆☆</td></tr>
+              <tr><td>Competitive research</td><td class="check">★★☆</td><td class="check">★★★</td><td class="check">★★★</td><td class="partial">★★☆</td></tr>
+              <tr><td>Brand voice consistency</td><td class="check">★★★</td><td class="partial">★★☆</td><td class="x">★☆☆</td><td class="x">★☆☆</td></tr>
+              <tr><td>Strategy documents</td><td class="check">★★★</td><td class="check">★★☆</td><td class="partial">★★☆</td><td class="partial">★★☆</td></tr>
+              <tr><td>Image generation</td><td class="x">★☆☆</td><td class="check">★★★</td><td class="check">★★☆</td><td class="partial">★★☆</td></tr>
+              <tr><td>Meeting summaries</td><td class="partial">★★☆</td><td class="partial">★★☆</td><td class="check">★★☆</td><td class="check">★★★</td></tr>
+              <tr><td>SEO content briefs</td><td class="check">★★★</td><td class="check">★★☆</td><td class="check">★★☆</td><td class="x">★☆☆</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:12px;color:#888;margin-top:1rem;font-family:var(--mono);">★★★ Excellent  ★★☆ Good  ★☆☆ Limited. Ratings based on practical marketing use — your results may vary by version and prompt quality.</p>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ==================== PROMPTS PAGE ==================== -->
+<div id="page-prompts" class="page">
+  <section style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-label">Prompt templates</div>
+      <h2>Steal These Prompts</h2>
+      <p style="color:#555;max-width:700px;margin-bottom:2rem;">These templates are built to be copied, personalized, and improved over time. The <span style="color:var(--hot-pink);font-family:var(--mono);">[bracketed sections]</span> are where you add context. The more specific you are, the better the output.</p>
+
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchPromptTab('copy',this)">Copywriting</button>
+        <button class="tab-btn" onclick="switchPromptTab('strategy',this)">Strategy</button>
+        <button class="tab-btn" onclick="switchPromptTab('analytics',this)">Analytics</button>
+        <button class="tab-btn" onclick="switchPromptTab('seo',this)">SEO</button>
+        <button class="tab-btn" onclick="switchPromptTab('email',this)">Email</button>
+        <button class="tab-btn" onclick="switchPromptTab('social',this)">Social</button>
+      </div>
+
+      <div id="ptab-copy" class="tab-content active">
+        <div class="template-grid">
+          <div class="template-card">
+            <div class="template-header"><span>Blog Post Draft</span><span style="color:#666;">Claude recommended</span></div>
+            <div class="template-body">
+              <p>Generate a complete first draft of a blog post. Customize the role, audience, and constraints to match your brand.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                You are a content marketer writing for <span class="var">[brand name]</span>, a <span class="var">[describe company]</span>. Write a <span class="var">[word count]</span>-word blog post with the working title: "<span class="var">[title]</span>".<br><br>
+                Target keyword: <span class="var">[keyword]</span><br>
+                Audience: <span class="var">[describe reader — job title, pain point, knowledge level]</span><br>
+                Tone: <span class="var">[conversational/authoritative/educational]</span><br>
+                Structure: Introduction with a hook, 3-5 H2 sections, conclusion with CTA<br>
+                Do not: use jargon, make unsupported claims, use filler phrases like "in today's fast-paced world"
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Repurpose Content</span><span style="color:#666;">Any tool</span></div>
+            <div class="template-body">
+              <p>One of the highest-ROI uses of AI: turning one piece of content into many.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                I have a <span class="var">[blog post/webinar transcript/whitepaper]</span> on the topic of <span class="var">[topic]</span>. Here is the full text: <span class="var">[paste content]</span><br><br>
+                From this, create:<br>
+                — 3 LinkedIn posts (150 words each, different angles)<br>
+                — 5 tweet-length social posts<br>
+                — 1 email newsletter summary (200 words)<br>
+                — 3 pull quotes I could use as standalone social cards<br>
+                — 1 short paragraph for an email signature or bio
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Editing for Brand Voice</span><span style="color:#666;">Claude recommended</span></div>
+            <div class="template-body">
+              <p>Use this after you have a draft — get AI to edit your existing writing, not replace it.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Edit the following copy to match our brand voice. Our tone is: <span class="var">[describe in 3-5 adjectives, e.g., "direct, warm, expert but not arrogant"]</span>.<br><br>
+                We avoid: <span class="var">[list words/phrases you hate, e.g., "leverage, synergy, unlock"]</span><br>
+                We lean into: <span class="var">[list phrases that feel on-brand]</span><br>
+                Preserve the original meaning and structure. Only change language, not ideas.<br><br>
+                Here is the copy: <span class="var">[paste copy]</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ptab-strategy" class="tab-content">
+        <div class="template-grid">
+          <div class="template-card">
+            <div class="template-header"><span>Audience Persona</span><span style="color:#666;">Claude / ChatGPT</span></div>
+            <div class="template-body">
+              <p>Build a grounded, useful persona — not a stock photo cliché.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Create a detailed marketing persona for <span class="var">[company/product]</span>. Base it on this audience: <span class="var">[describe who you're targeting: industry, role, company size, etc.]</span><br><br>
+                For each persona include: name &amp; title, a realistic day-in-the-life, their top 3 professional frustrations, their success metrics at work, where they consume content, what would make them trust a vendor, and what would make them ignore us.<br><br>
+                Make it specific and realistic. Avoid vague generalizations.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Campaign Strategy Outline</span><span style="color:#666;">Claude recommended</span></div>
+            <div class="template-body">
+              <p>A fast way to get a campaign skeleton you can flesh out with your team.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Build a high-level marketing campaign strategy outline for: <span class="var">[goal: product launch/awareness/lead gen]</span>.<br><br>
+                Audience: <span class="var">[persona]</span><br>
+                Timeline: <span class="var">[e.g., 6-week campaign]</span><br>
+                Channels available: <span class="var">[list channels]</span><br>
+                Budget level: <span class="var">[limited/moderate/substantial — no specific numbers needed]</span><br><br>
+                Structure the response as: Campaign theme, channel-by-channel plan, content types needed, key milestones, and 3 KPIs to track success.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ptab-analytics" class="tab-content">
+        <div class="template-grid">
+          <div class="template-card">
+            <div class="template-header"><span>Marketing Report Summary</span><span style="color:#666;">Claude / Copilot</span></div>
+            <div class="template-body">
+              <p>Turn your raw data into a narrative. This is where AI saves the most time.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                I'm going to share this month's marketing performance data. Your job is to write an executive summary I can share with my VP.<br><br>
+                Format: 3 headline numbers (most important), 3 bullet points of insight (the "so what" behind the numbers), 1 win to celebrate, 1 area of concern with a hypothesis about why, and 2 recommended actions for next month.<br><br>
+                Audience: VP who doesn't have time for context, just needs the key takeaways.<br>
+                Data: <span class="var">[paste your data here]</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Channel Attribution Analysis</span><span style="color:#666;">Claude / Gemini</span></div>
+            <div class="template-body">
+              <p>Get AI to help you think through your attribution story, not just report numbers.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                I'm analyzing our marketing channel performance. Here's what I have: <span class="var">[list channels and their metrics: channel, spend, leads/conversions, revenue influenced]</span><br><br>
+                Help me: identify which channels are most efficient by cost-per-outcome, flag any channels where spend and results seem misaligned, suggest 2 questions I should investigate further, and write a 3-sentence narrative I could use to explain channel performance to a non-marketing stakeholder.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ptab-seo" class="tab-content">
+        <div class="template-grid">
+          <div class="template-card">
+            <div class="template-header"><span>SEO Content Brief</span><span style="color:#666;">Claude recommended</span></div>
+            <div class="template-body">
+              <p>Brief a writer (or yourself) properly. Covers everything from keyword intent to structure.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Create a detailed SEO content brief for the primary keyword: "<span class="var">[keyword]</span>"<br><br>
+                Include: search intent (informational/transactional/navigational), target audience description, recommended word count range, H1 suggestion, H2 section structure (5-7 sections), 8 LSI/semantic keywords to naturally include, "People Also Ask" questions to address, and one recommended internal link topic.<br><br>
+                Our brand: <span class="var">[brief description of company and what we do]</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Meta Descriptions at Scale</span><span style="color:#666;">Any tool</span></div>
+            <div class="template-body">
+              <p>One of the most time-consuming small tasks in SEO — let AI batch it for you.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Write SEO-optimized meta descriptions for the following pages. Each must be 150-160 characters, include the target keyword naturally, have a clear value proposition or benefit, and end with a subtle action word (learn, discover, explore — not "click here").<br><br>
+                Pages:<br>
+                1. Page title: <span class="var">[title]</span> | Keyword: <span class="var">[keyword]</span><br>
+                2. Page title: <span class="var">[title]</span> | Keyword: <span class="var">[keyword]</span><br>
+                3. Page title: <span class="var">[title]</span> | Keyword: <span class="var">[keyword]</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ptab-email" class="tab-content">
+        <div class="template-grid">
+          <div class="template-card">
+            <div class="template-header"><span>Subject Line Testing</span><span style="color:#666;">Any tool</span></div>
+            <div class="template-body">
+              <p>The highest-leverage AI use case in email: fast subject line variation testing.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Write 10 subject line options for this email: <span class="var">[describe the email content/offer in 2 sentences]</span><br><br>
+                Cover these angles (2 each):<br>
+                — Curiosity gap ("The reason most [audience] get X wrong...")<br>
+                — Direct benefit ("How to [achieve outcome] in [timeframe]")<br>
+                — Urgency/scarcity<br>
+                — Social proof or data ("X% of [audience] do this...")<br>
+                — Question format<br><br>
+                Keep all under 50 characters. Flag your top 3 picks.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Newsletter Intro</span><span style="color:#666;">Claude recommended</span></div>
+            <div class="template-body">
+              <p>The hardest part of a newsletter is the opening. Let AI draft it, then make it yours.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Write 3 different opening paragraphs for a weekly marketing newsletter. The issue covers: <span class="var">[briefly describe this week's content/theme]</span>.<br><br>
+                Version 1: Open with a short story or observation<br>
+                Version 2: Open with a provocative statement or hot take<br>
+                Version 3: Open with a data point or industry trend<br><br>
+                Tone: <span class="var">[warm/professional/direct/opinionated]</span>. Max 80 words each. I'll pick one and add my own voice to it.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ptab-social" class="tab-content">
+        <div class="template-grid">
+          <div class="template-card">
+            <div class="template-header"><span>LinkedIn Post</span><span style="color:#666;">Claude / ChatGPT</span></div>
+            <div class="template-body">
+              <p>Write LinkedIn posts that sound like a real human, not a press release.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Write a LinkedIn post from the perspective of <span class="var">[my name/title]</span> about: <span class="var">[topic or insight to share]</span>.<br><br>
+                Style: First-person, conversational, a real point of view (not generic advice). Start with a hook that earns the "see more" click — not a question, not "I'm excited to share." Use short paragraphs, max 3 sentences each. End with 1 question that invites comments. No em dashes. No hashtag spam — max 3 relevant hashtags at the end if any.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+          <div class="template-card">
+            <div class="template-header"><span>Content Calendar Ideas</span><span style="color:#666;">ChatGPT / Claude</span></div>
+            <div class="template-body">
+              <p>Get unstuck on content planning in minutes instead of a day of meetings.</p>
+              <div class="prompt-box" style="margin:0;">
+                <div class="prompt-label">Template</div>
+                Generate a 4-week social media content calendar for <span class="var">[brand/product area]</span>. Channels: <span class="var">[LinkedIn/Instagram/X/etc]</span>. Posting frequency: <span class="var">[X times per week]</span>.<br><br>
+                Content mix: 40% educational, 30% brand/culture, 20% promotional, 10% engagement/conversation-starter. For each post suggest: content theme, format (text/image/video/poll), hook line, and best day to post. Avoid seasonal/holiday fluff unless I specify.
+                <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ==================== WORKFLOWS PAGE ==================== -->
+<div id="page-workflows" class="page">
+  <section style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-label">Process templates</div>
+      <h2>Build Your AI Workflow</h2>
+      <p style="color:#555;max-width:700px;margin-bottom:3rem;">A prompt is a one-time shortcut. A workflow is how you build habits that compound. These are repeatable processes — not just prompts — for the most common marketing tasks.</p>
+
+      <div class="cards-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr));">
+        <div class="card">
+          <div class="card-tag">Blog Production</div>
+          <h3>The 4-Step Blog Workflow</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Brief the AI (Claude)</h4>
+                <p>Give it the keyword, audience, tone, and structure. Get an outline back. Edit the outline before writing begins — this saves time later.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Generate section by section</h4>
+                <p>Don't ask for the whole post at once. Prompt each H2 section individually. This gives you more control and better quality per section.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Add your expert layer</h4>
+                <p>Insert real examples, opinions, data, and brand voice. This is where your 16 years matters — AI can't fake lived experience.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Final edit pass</h4>
+                <p>Read it out loud. Does it sound like you? Check all facts. Remove any claims that feel invented. Add internal links.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Monthly Reporting</div>
+          <h3>The Reporting Workflow</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Export your data first</h4>
+                <p>Get everything in one place before prompting. AI can't pull data — you need to bring the numbers to it.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Paste &amp; summarize (Claude/Copilot)</h4>
+                <p>Use the analytics summary prompt from the Prompts section. Give context on what your goals were this month.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Build the narrative, not just the data</h4>
+                <p>Ask AI to write the "so what" — the story behind the numbers. Executives want insight, not spreadsheets.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Review &amp; add context</h4>
+                <p>You know why Q3 dipped. AI doesn't. Add that context manually — it's the difference between a mediocre report and a great one.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Campaign Launch</div>
+          <h3>Campaign Copy Workflow</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Write the brief yourself first</h4>
+                <p>Before prompting for copy, write the campaign brief. The quality of your brief is directly proportional to the quality of AI output.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Generate hero messaging (Claude)</h4>
+                <p>Start with the headline and core value proposition. Get 5 options. Pick the strongest angle, then build everything else from it.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Cascade to channels (ChatGPT)</h4>
+                <p>Take your approved hero message and adapt it for each channel: email, social, ads, landing page. Maintain the core message, adjust the format.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>QA everything as a batch</h4>
+                <p>Paste all your final copy variants into Claude and ask it to flag any inconsistencies in messaging, tone, or factual claims across all pieces.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">SEO Strategy</div>
+          <h3>Content Gap Research</h3>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Define your topic cluster</h4>
+                <p>Give AI your primary topic and ask it to map out 20 related subtopics across the buyer journey (awareness → consideration → decision).</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Compare against what you have</h4>
+                <p>List your existing content. Ask AI to identify gaps and prioritize by likely search intent and audience readiness.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Brief the top 5 gaps</h4>
+                <p>Use the SEO brief template for each. Get briefs in 30 minutes instead of half a day.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Validate with real search data</h4>
+                <p>AI estimates intent — always check actual search volumes in your SEO tool before committing resources. AI is the starting point, not the source of truth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-box" style="max-width:700px;margin:3rem auto 0;">
+        <div class="card-tag">The golden rule of AI workflows</div>
+        <h3>Garbage in. Garbage out. </h3>
+        <p style="color:#555;margin-top:0.5rem;font-size:15px;line-height:1.8;">The single biggest predictor of AI output quality is input quality. Marketers who get bad results from AI almost always gave it too little context, no audience information, and no examples of what good looks like. Before you blame the tool, improve the brief. Every time. Without exception.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== BLOG PAGE ==================== -->
+<div id="page-blog" class="page">
+  <section style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-label">Resources by role</div>
+      <h2>Marketing Role Guides</h2>
+      <p style="color:#555;max-width:700px;margin-bottom:2rem;">Filter by your role and find the guides, prompts, and workflows most relevant to your day-to-day. New guides added regularly.</p>
+
+      <div style="margin-bottom:2rem;">
+        <span class="role-badge active" onclick="filterBlogs('all',this)">All Roles</span>
+        <span class="role-badge" onclick="filterBlogs('content',this)">Content</span>
+        <span class="role-badge" onclick="filterBlogs('demand',this)">Demand Gen</span>
+        <span class="role-badge" onclick="filterBlogs('brand',this)">Brand</span>
+        <span class="role-badge" onclick="filterBlogs('analytics',this)">Analytics</span>
+        <span class="role-badge" onclick="filterBlogs('social',this)">Social</span>
+      </div>
+
+      <div class="blog-grid">
+        <div class="blog-card" data-role="content">
+          <div class="blog-card-img" style="background:#d4ff00;color:#0a0a0a;">BLOG</div>
+          <div class="blog-card-body">
+            <span class="blog-role-tag" style="background:#0a0a0a;color:#d4ff00;">Content Marketing</span>
+            <h3>How to Build a Full Content Machine Using AI (Without Losing Your Voice)</h3>
+            <p>From ideation to final edit — a practical, step-by-step system for content marketers who want to ship more without sacrificing quality.</p>
+            <a href="#" class="read-more" onclick="showBlogPost('content-machine')">Read Guide →</a>
+          </div>
+        </div>
+        <div class="blog-card" data-role="demand">
+          <div class="blog-card-img" style="background:#0033ff;color:#fff;">DEMAND</div>
+          <div class="blog-card-body">
+            <span class="blog-role-tag" style="background:#0033ff;color:#fff;">Demand Generation</span>
+            <h3>AI for Demand Gen: Smarter Campaigns in Less Time</h3>
+            <p>How to use AI for ICP research, sequence writing, landing page copy, and campaign reporting — a demand gen playbook.</p>
+            <a href="#" class="read-more" onclick="showBlogPost('demand-gen')">Read Guide →</a>
+          </div>
+        </div>
+        <div class="blog-card" data-role="brand">
+          <div class="blog-card-img" style="background:#ff1f8e;color:#fff;">BRAND</div>
+          <div class="blog-card-body">
+            <span class="blog-role-tag" style="background:#ff1f8e;color:#fff;">Brand Marketing</span>
+            <h3>Protecting Your Brand Voice When Using AI: A Non-Negotiable Guide</h3>
+            <p>How to train AI on your brand guidelines, catch off-brand outputs fast, and make sure your tone doesn't turn generic.</p>
+            <a href="#" class="read-more" onclick="showBlogPost('brand-voice')">Read Guide →</a>
+          </div>
+        </div>
+        <div class="blog-card" data-role="analytics">
+          <div class="blog-card-img" style="background:#7b00ff;color:#fff;">DATA</div>
+          <div class="blog-card-body">
+            <span class="blog-role-tag" style="background:#7b00ff;color:#fff;">Analytics &amp; Strategy</span>
+            <h3>From Spreadsheet to Story: AI-Powered Marketing Reporting</h3>
+            <p>Stop copying and pasting numbers into a slide deck. Here's how to use AI to build a reporting workflow that actually tells a story.</p>
+            <a href="#" class="read-more" onclick="showBlogPost('reporting')">Read Guide →</a>
+          </div>
+        </div>
+        <div class="blog-card" data-role="social">
+          <div class="blog-card-img" style="background:#ff6600;color:#fff;">SOCIAL</div>
+          <div class="blog-card-body">
+            <span class="blog-role-tag" style="background:#ff6600;color:#fff;">Social Media</span>
+            <h3>The Social Media Manager's AI Toolkit: What Works, What Doesn't</h3>
+            <p>A real-world breakdown of which AI tools help social media managers the most — and where to keep the human in the loop.</p>
+            <a href="#" class="read-more" onclick="showBlogPost('social-toolkit')">Read Guide →</a>
+          </div>
+        </div>
+        <div class="blog-card" data-role="content">
+          <div class="blog-card-img" style="background:#00ff88;color:#0a0a0a;">SEO</div>
+          <div class="blog-card-body">
+            <span class="blog-role-tag" style="background:#00ff88;color:#0a0a0a;">SEO &amp; Content</span>
+            <h3>AI + SEO: What Actually Helps Your Rankings (And What Tanks Them)</h3>
+            <p>The honest guide to using AI for SEO without getting penalized or publishing generic garbage. Based on what's actually working in 2025.</p>
+            <a href="#" class="read-more" onclick="showBlogPost('seo-guide')">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAMPLE BLOG POST VIEW -->
+      <div id="blog-post-view" style="display:none;margin-top:3rem;">
+        <div style="border-top:4px solid var(--hot-pink);padding-top:2rem;">
+          <button onclick="hideBlogPost()" style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px;background:var(--black);color:var(--acid-yellow);border:none;padding:0.5rem 1rem;cursor:pointer;margin-bottom:2rem;">← Back to Guides</button>
+          <div id="blog-post-content"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div id="page-about" class="page">
+  <section style="padding-top:3rem;">
+    <div class="container">
+      <div class="section-label">About this site</div>
+      <div class="about-grid">
+        <div>
+          <div class="about-avatar">
+            <span class="avatar-initials">YOU</span>
+            <span>16 years</span>
+            <span>content marketing</span>
+          </div>
+          <div style="margin-top:1.5rem;">
+            <div class="card-tag" style="display:block;text-align:center;margin-bottom:0.5rem;">Hands-on with</div>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;">
+              <span style="font-family:var(--mono);font-size:10px;padding:4px 10px;background:#d97c52;color:#fff;">Claude</span>
+              <span style="font-family:var(--mono);font-size:10px;padding:4px 10px;background:#10a37f;color:#fff;">ChatGPT</span>
+              <span style="font-family:var(--mono);font-size:10px;padding:4px 10px;background:#4285f4;color:#fff;">Gemini</span>
+              <span style="font-family:var(--mono);font-size:10px;padding:4px 10px;background:#0078d4;color:#fff;">Copilot</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>Why I built this</h2>
+          <p style="font-size:1.05rem;line-height:1.8;color:#444;margin-bottom:1.5rem;">I've been in content marketing for 16 years. I've seen the shift from print to digital, from desktop to mobile, from SEO to social. And now AI. Every time, there were two types of marketers: the ones who adapted fast, and the ones who waited too long.</p>
+          <p style="line-height:1.8;color:#444;margin-bottom:1.5rem;">When ChatGPT went mainstream in late 2022, I didn't hand over the wheel — I got in the driver's seat. I spent the next two-plus years actually using these tools in real marketing work: writing briefs, running campaigns, building reporting workflows, editing at scale. I know what works, what sounds impressive but doesn't deliver, and where you still absolutely need a human in the loop.</p>
+          <p style="line-height:1.8;color:#444;margin-bottom:2rem;">This site isn't theory. It's a practical guide built by someone who has 16 years of marketing experience and has tested all four major tools — Claude, ChatGPT, Gemini, and Copilot — in real marketing contexts. The prompts and workflows here are ones I'd actually use myself.</p>
+          <h3 style="margin-bottom:1rem;">What I believe about AI + marketing</h3>
+          <ul class="cred-list">
+            <li>AI doesn't replace good marketing judgment — it accelerates it</li>
+            <li>You need to know what "good" looks like before you can spot a bad AI output</li>
+            <li>The marketers who learn this now will be indispensable. The ones who don't will be replaceable.</li>
+            <li>Your experience is your competitive advantage. Use AI to amplify it, not replace it.</li>
+            <li>Generic prompts produce generic outputs. Specificity is a skill.</li>
+            <li>Every AI output is a first draft. Never ship without editing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:4rem;background:var(--black);color:var(--off-white);padding:3rem;border:3px solid var(--acid-yellow);">
+        <div class="section-label" style="color:var(--hot-pink);">The bottom line</div>
+        <h2 style="color:var(--acid-yellow);font-size:2.5rem;">Learn them before they learn you.</h2>
+        <p style="max-width:700px;color:rgba(245,240,232,0.7);font-size:1.1rem;line-height:1.8;margin-top:1rem;">Your company didn't buy these AI tools to replace you — they bought them to get more output from their team. The question is: will you be the person who figured out how to do that, or the person who needed someone else to show them? You already know the answer. That's why you're here.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Prompt Before They Do</div>
+      <p class="footer-desc">The no-BS AI guide for experienced marketers. Built on 16 years of content marketing experience and real hands-on time with every major AI tool.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Tools</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('tools');switchToolTabById('claude')">Claude</a></li>
+        <li><a href="#" onclick="showPage('tools');switchToolTabById('chatgpt')">ChatGPT</a></li>
+        <li><a href="#" onclick="showPage('tools');switchToolTabById('gemini')">Gemini</a></li>
+        <li><a href="#" onclick="showPage('tools');switchToolTabById('copilot')">Copilot</a></li>
+        <li><a href="#" onclick="showPage('tools');switchToolTabById('compare')">Compare</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Resources</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('prompts')">Prompt Templates</a></li>
+        <li><a href="#" onclick="showPage('workflows')">Workflows</a></li>
+        <li><a href="#" onclick="showPage('blog')">Role Guides</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">About</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('about')">About This Site</a></li>
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Prompt Before They Do — All statistics cited from verified industry sources</span>
+    <span>Built for experienced marketers learning AI fast</span>
+  </div>
+</footer>
+
+<!-- BLOG POST CONTENT (hidden data) -->
+<div id="blog-posts-data" style="display:none;">
+
+  <div id="post-content-machine">
+    <div class="section-label">Content Marketing</div>
+    <h2>How to Build a Full Content Machine Using AI (Without Losing Your Voice)</h2>
+    <p style="color:#888;font-family:var(--mono);font-size:12px;margin-bottom:2rem;">For: Content marketers | Tools: Claude, ChatGPT | Estimated time saved: 3-5 hours/week</p>
+    <p style="line-height:1.8;margin-bottom:1.5rem;">The promise of AI for content marketing is real — but only if you build the right system around it. The marketers who get the best results treat AI like a very capable content team member, not a vending machine you put prompts into and pull content out of.</p>
+    <h3 style="margin:2rem 0 1rem;">The 5 stages where AI helps most</h3>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">1. Ideation &amp; editorial planning <span class="accordion-icon">+</span></div>
+      <div class="accordion-body">Use AI to generate 20 content ideas from a single seed topic — then filter with your editorial judgment. This is AI at its best: high volume, low stakes, you pick the winners. Ask ChatGPT for 20 blog ideas around your content pillar, then run the top 5 through Claude for a proper brief. Takes 15 minutes instead of a half-day brainstorm.</div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">2. Research synthesis <span class="accordion-icon">+</span></div>
+      <div class="accordion-body">Paste in multiple source documents, reports, or research notes and ask AI to synthesize the key points. This works especially well for topic backgrounders before a briefing call. Always check facts — AI synthesizes well but occasionally misremembers details. Your editing pass catches this.</div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">3. First drafts (section by section) <span class="accordion-icon">+</span></div>
+      <div class="accordion-body">Don't ask for the full post at once. Prompt section by section, starting with the outline. This gives you checkpoints to course-correct early rather than editing a 1,500-word draft that went in the wrong direction at paragraph 3. Claude is particularly strong here because it follows structural instructions precisely.</div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">4. The expert layer (you, not AI) <span class="accordion-icon">+</span></div>
+      <div class="accordion-body">This is where your 10+ years of marketing experience becomes irreplaceable. After the draft: add your real opinions, insert examples from your actual work or industry, include specific data you know to be true. AI wrote the skeleton. You provide the soul. This is also what protects against the generic AI voice that audiences are increasingly good at spotting.</div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-header" onclick="toggleAccordion(this)">5. Publishing-ready editing <span class="accordion-icon">+</span></div>
+      <div class="accordion-body">One final prompt that earns its keep: paste your full draft and ask AI to flag any unsupported claims, clichés, or areas where the logic doesn't flow. It's like having a developmental editor on call. Then do your own read-aloud pass. If you stumble on a sentence, rewrite it.</div>
+    </div>
+    <div class="disclaimer" style="margin-top:2rem;">
+      <strong>Key stat</strong>
+      According to CoSchedule's 2025 State of AI in Marketing report (1,005 marketing professionals), 84% of marketers report AI improved the speed of delivering high-quality content — but speed only matters if the quality is actually there.
+    </div>
+  </div>
+
+  <div id="post-brand-voice">
+    <div class="section-label">Brand Marketing</div>
+    <h2>Protecting Your Brand Voice When Using AI: A Non-Negotiable Guide</h2>
+    <p style="color:#888;font-family:var(--mono);font-size:12px;margin-bottom:2rem;">For: Brand marketers, content leads | Tools: Claude (recommended) | Priority: High</p>
+    <p style="line-height:1.8;margin-bottom:1.5rem;">The fastest way to erode brand equity in the AI era is to let AI write copy without a strong brand voice brief. When you don't tell AI what your brand sounds like, it defaults to a suspiciously pleasant, surprisingly generic, and unmistakably artificial voice. Here's how to prevent that.</p>
+    <h3 style="margin:2rem 0 1rem;">Build your AI brand voice brief</h3>
+    <p style="line-height:1.8;margin-bottom:1.5rem;">Before you write a single marketing prompt for AI, create a brand voice reference document. Paste it at the start of every session, or save it as a custom instruction. Include:</p>
+    <div class="prompt-box">
+      <div class="prompt-label">Brand Voice Prompt Prefix</div>
+      Before we begin: here is our brand voice guide.<br><br>
+      Our brand is: <span class="var">[company name]</span>, a <span class="var">[describe company]</span>.<br>
+      Our audience is: <span class="var">[describe]</span><br>
+      Our tone is: <span class="var">[3-5 adjectives, e.g., direct, warm, expert-but-not-arrogant]</span><br>
+      We always: <span class="var">[list 3 things you consistently do, e.g., use active voice, speak to the reader as an equal]</span><br>
+      We never: <span class="var">[list words and phrases that are off-brand, e.g., leverage, synergy, game-changing, in today's world]</span><br>
+      Sample sentence that sounds like us: <span class="var">[paste an example from existing copy]</span><br><br>
+      With this context in mind, please complete the following task:
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    </div>
+    <p style="line-height:1.8;margin-top:1.5rem;">This single habit will improve your AI output quality more than any other. Claude in particular responds extremely well to detailed brand voice instructions and will maintain them consistently across a long session.</p>
+  </div>
+
+</div>
+
+<script>
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const page = document.getElementById('page-' + pageId);
+  if (page) page.classList.add('active');
+  const navEl = document.getElementById('nav-' + pageId);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function switchToolTab(tabId, btn) {
+  document.querySelectorAll('#page-tools .tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#page-tools .tab-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('tool-' + tabId);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function switchToolTabById(tabId) {
+  const btns = document.querySelectorAll('#page-tools .tab-btn');
+  let matchBtn = null;
+  btns.forEach(b => { if(b.textContent.trim().toLowerCase() === tabId) matchBtn = b; });
+  switchToolTab(tabId, matchBtn);
+}
+
+function showTool(toolId) {
+  setTimeout(() => switchToolTabById(toolId), 50);
+}
+
+function switchPromptTab(tabId, btn) {
+  document.querySelectorAll('#page-prompts .tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#page-prompts .tab-btn').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('ptab-' + tabId);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function copyPrompt(btn) {
+  const box = btn.closest('.prompt-box');
+  const text = box.innerText.replace(/^Copy$/m,'').replace(/^[A-Z ]+$/m,'').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  }).catch(() => {
+    btn.textContent = 'Select & Copy';
+    const range = document.createRange();
+    range.selectNodeContents(box);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
+}
+
+function toggleAccordion(header) {
+  const item = header.closest('.accordion-item');
+  const body = item.querySelector('.accordion-body');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    item.classList.add('open');
+  }
+}
+
+function filterBlogs(role, badge) {
+  document.querySelectorAll('.role-badge').forEach(b => b.classList.remove('active'));
+  badge.classList.add('active');
+  document.querySelectorAll('.blog-card').forEach(card => {
+    if (role === 'all' || card.dataset.role === role) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function showBlogPost(postId) {
+  const content = document.getElementById('post-' + postId);
+  if (!content) return;
+  const view = document.getElementById('blog-post-view');
+  document.getElementById('blog-post-content').innerHTML = content.innerHTML;
+  view.style.display = 'block';
+  view.scrollIntoView({behavior:'smooth'});
+}
+
+function hideBlogPost() {
+  document.getElementById('blog-post-view').style.display = 'none';
+  document.getElementById('blog-post-content').innerHTML = '';
+}
+</script>
+</body>
+</html>
