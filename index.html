@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prompt Before They Do | AI Tools for Marketers</title>
@@ -678,7 +701,6 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo"><span>Prompt</span>Before<span>They</span>Do</div>
-
   <!-- ADD THIS -->
   <div class="menu-toggle">☰</div>
 
@@ -1941,6 +1963,14 @@ function hideBlogPost() {
   document.getElementById('blog-post-view').style.display = 'none';
   document.getElementById('blog-post-content').innerHTML = '';
 }
+</script>
+  <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
 </script>
 </body>
 </html>
