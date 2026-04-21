@@ -694,6 +694,83 @@
     .nav-links{display:none;}
     .hero-stats{grid-template-columns:1fr 1fr;}
   }
+
+  /* ADVENTURE / FIND MY PROMPT PAGE */
+  #adventure { padding:5rem 2rem; background:var(--black); border-top:4px solid var(--acid-yellow); border-bottom:4px solid var(--hot-pink); }
+  .adv-container { max-width:900px; margin:0 auto; }
+  .adv-headline { font-family:var(--display); font-weight:800; font-size:clamp(2rem,4vw,3.5rem); color:var(--off-white); letter-spacing:-2px; line-height:1; margin-bottom:0.75rem; }
+  .adv-headline span { color:var(--acid-yellow); }
+  .adv-sub { font-size:15px; color:rgba(245,240,232,0.6); max-width:600px; margin-bottom:3rem; line-height:1.7; }
+
+  .progress-wrap { display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem; }
+  .progress-track { flex:1; height:3px; background:rgba(245,240,232,0.1); position:relative; }
+  .progress-fill { height:100%; background:var(--acid-yellow); transition:width 0.4s ease; }
+  .progress-label { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; color:rgba(245,240,232,0.35); white-space:nowrap; }
+
+  .step-card { background:#111; border:2px solid rgba(245,240,232,0.08); padding:2.5rem; position:relative; }
+  .step-number { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:3px; color:var(--hot-pink); margin-bottom:0.75rem; }
+  .step-question { font-family:var(--display); font-weight:800; font-size:clamp(1.4rem,2.5vw,2rem); color:var(--off-white); letter-spacing:-1px; line-height:1.1; margin-bottom:2rem; }
+  .step-question .q-accent { color:var(--acid-yellow); }
+
+  .options-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:0.75rem; }
+  .options-grid.two-col { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+  .opt-btn { background:transparent; border:2px solid rgba(245,240,232,0.15); color:var(--off-white); font-family:var(--body); font-size:14px; text-align:left; padding:1rem 1.25rem; cursor:pointer; transition:all 0.15s; position:relative; line-height:1.4; width:100%; }
+  .opt-btn:hover { background:var(--acid-yellow); color:var(--black); border-color:var(--acid-yellow); }
+  .opt-btn .opt-icon { display:block; font-size:18px; margin-bottom:0.4rem; line-height:1; }
+  .opt-btn .opt-label { display:block; font-weight:600; font-size:15px; margin-bottom:0.2rem; }
+  .opt-btn .opt-desc { display:block; font-size:12px; opacity:0.65; line-height:1.4; }
+  .opt-btn:hover .opt-desc { opacity:0.75; }
+
+  .back-btn { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; background:transparent; border:none; color:rgba(245,240,232,0.3); cursor:pointer; padding:0; margin-top:1.5rem; display:inline-flex; align-items:center; gap:0.5rem; transition:color 0.15s; }
+  .back-btn:hover { color:var(--off-white); }
+  .back-btn::before { content:'←'; }
+
+  .breadcrumb { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2rem; min-height:24px; }
+  .crumb { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:1px; padding:3px 10px; background:rgba(212,255,0,0.08); color:var(--acid-yellow); border:1px solid rgba(212,255,0,0.2); display:flex; align-items:center; gap:0.4rem; }
+  .crumb::after { content:'›'; opacity:0.4; margin-left:0.2rem; }
+  .crumb:last-child::after { display:none; }
+
+  .result-card { background:#111; border:2px solid var(--acid-yellow); padding:2.5rem; position:relative; animation:resultIn 0.4s ease; }
+  .result-card::after { content:''; position:absolute; bottom:-6px; right:-6px; width:100%; height:100%; background:var(--acid-yellow); z-index:-1; }
+  @keyframes resultIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+  @keyframes stepIn { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:none} }
+  .step-inner { animation:stepIn 0.3s ease; }
+
+  .result-tag { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; padding:4px 12px; background:var(--acid-yellow); color:var(--black); display:inline-block; margin-bottom:1.5rem; font-weight:700; }
+  .result-tool-badge { display:inline-flex; align-items:center; gap:0.6rem; padding:0.5rem 1rem; border:2px solid var(--acid-yellow); margin-bottom:1.5rem; }
+  .tool-dot { width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; font-size:11px; }
+  .tool-dot.claude  { background:#d97c52; color:#fff; }
+  .tool-dot.chatgpt { background:#10a37f; color:#fff; }
+  .tool-dot.gemini  { background:#4285f4; color:#fff; }
+  .tool-dot.copilot { background:#0078d4; color:#fff; }
+  .result-tool-name { font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:2px; color:var(--acid-yellow); font-weight:700; }
+  .result-why { font-size:14px; color:rgba(245,240,232,0.6); font-style:italic; margin-bottom:2rem; line-height:1.6; padding-left:1rem; border-left:3px solid var(--hot-pink); }
+  .result-title { font-family:var(--display); font-weight:800; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--off-white); letter-spacing:-1px; line-height:1.1; margin-bottom:0.5rem; }
+  .result-desc { font-size:14px; color:rgba(245,240,232,0.55); margin-bottom:2rem; line-height:1.7; }
+
+  .result-prompt-wrap { background:#0a0a0a; border:2px solid var(--hot-pink); padding:1.5rem; position:relative; margin-bottom:1.5rem; }
+  .prompt-label-tag { position:absolute; top:0; left:1rem; transform:translateY(-50%); background:var(--hot-pink); color:#fff; font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:2px; padding:3px 10px; font-weight:700; }
+  .prompt-text { font-family:var(--mono); font-size:12px; color:var(--off-white); line-height:1.8; white-space:pre-wrap; word-break:break-word; }
+  .prompt-text .var { color:var(--hot-pink); font-style:italic; }
+  .copy-prompt-btn { position:absolute; bottom:0.75rem; right:0.75rem; font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:1px; background:transparent; border:1px solid rgba(245,240,232,0.2); color:rgba(245,240,232,0.4); padding:4px 10px; cursor:pointer; transition:all 0.15s; }
+  .copy-prompt-btn:hover { border-color:var(--acid-yellow); color:var(--acid-yellow); }
+
+  .result-tips { margin-bottom:2rem; }
+  .tips-heading { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--hot-pink); margin-bottom:0.75rem; }
+  .tip-item { display:flex; gap:0.75rem; align-items:flex-start; padding:0.5rem 0; border-bottom:1px solid rgba(245,240,232,0.06); font-size:13px; color:rgba(245,240,232,0.65); line-height:1.5; }
+  .tip-item::before { content:'►'; font-size:8px; color:var(--acid-yellow); flex-shrink:0; margin-top:4px; }
+
+  .result-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(245,240,232,0.08); }
+  .btn-restart { font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:2px; padding:0.8rem 1.5rem; background:transparent; border:2px solid var(--off-white); color:var(--off-white); cursor:pointer; transition:all 0.15s; }
+  .btn-restart:hover { background:var(--off-white); color:var(--black); }
+  .btn-explore { font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:2px; padding:0.8rem 1.5rem; background:var(--acid-yellow); border:2px solid var(--acid-yellow); color:var(--black); cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s; }
+  .btn-explore:hover { background:transparent; color:var(--acid-yellow); }
+
+  @media(max-width:600px){
+    .options-grid,.options-grid.two-col { grid-template-columns:1fr; }
+    #adventure { padding:3rem 1.25rem; }
+    .step-card,.result-card { padding:1.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -705,13 +782,14 @@
   <div class="menu-toggle">☰</div>
 
   <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
-    <li><a href="#" onclick="showPage('tools')" id="nav-tools">The Tools</a></li>
-    <li><a href="#" onclick="showPage('prompts')" id="nav-prompts">Prompt Templates</a></li>
-    <li><a href="#" onclick="showPage('workflows')" id="nav-workflows">Workflows</a></li>
+    <li><a href="#home" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a href="#tools" onclick="showPage('tools')" id="nav-tools">The Tools</a></li>
+    <li><a href="#prompts" onclick="showPage('prompts')" id="nav-prompts">Prompt Templates</a></li>
+    <li><a href="#workflows" onclick="showPage('workflows')" id="nav-workflows">Workflows</a></li>
+    <li><a href="#blog" onclick="showPage('blog')" id="nav-blog">Blog</a></li>
     <li><a href="https://marketersaiguide.wordpress.com/" target="_blank">Blog</a></li>
-    <li><a href="#" onclick="showPage('adventure')" id="nav-adventure">Find My Prompt</a></li>
-    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#adventure" onclick="showPage('adventure')" id="nav-adventure">Find My Prompt</a></li>
+    <li><a href="#about" onclick="showPage('about')" id="nav-about">About</a></li>
   </ul>
 </nav>
 
@@ -1738,18 +1816,22 @@
 </section>
 
 <script>
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = this;
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(r => {
-      if (r.ok) {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(r => {
+        if (r.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        }
+      });
     });
   });
 </script>
@@ -1775,110 +1857,10 @@
     </div>
   </section>
 </div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find Your Prompt — Prompt Before They Do</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --black: #0a0a0a;
-    --off-white: #f5f0e8;
-    --cream: #fdf8f0;
-    --acid-yellow: #d4ff00;
-    --hot-pink: #ff1f8e;
-    --mono: 'Space Mono', monospace;
-    --display: 'Syne', sans-serif;
-    --body: 'IBM Plex Sans', sans-serif;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--cream); color: var(--black); font-family: var(--body); font-size: 16px; line-height: 1.6; }
-  body::before { content:''; position:fixed; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.012) 2px,rgba(0,0,0,0.012) 4px); pointer-events:none; z-index:9999; }
 
-  #adventure { padding:5rem 2rem; background:var(--black); border-top:4px solid var(--acid-yellow); border-bottom:4px solid var(--hot-pink); }
-  .adv-container { max-width:900px; margin:0 auto; }
-  .section-label { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:3px; color:var(--hot-pink); margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
-  .section-label::before { content:'//'; opacity:0.5; }
-  .adv-headline { font-family:var(--display); font-weight:800; font-size:clamp(2rem,4vw,3.5rem); color:var(--off-white); letter-spacing:-2px; line-height:1; margin-bottom:0.75rem; }
-  .adv-headline span { color:var(--acid-yellow); }
-  .adv-sub { font-size:15px; color:rgba(245,240,232,0.6); max-width:600px; margin-bottom:3rem; line-height:1.7; }
+<!-- ==================== ADVENTURE PAGE ==================== -->
+<div id="page-adventure" class="page">
 
-  .progress-wrap { display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem; }
-  .progress-track { flex:1; height:3px; background:rgba(245,240,232,0.1); position:relative; }
-  .progress-fill { height:100%; background:var(--acid-yellow); transition:width 0.4s ease; }
-  .progress-label { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; color:rgba(245,240,232,0.35); white-space:nowrap; }
-
-  .step-card { background:#111; border:2px solid rgba(245,240,232,0.08); padding:2.5rem; position:relative; }
-  .step-number { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:3px; color:var(--hot-pink); margin-bottom:0.75rem; }
-  .step-question { font-family:var(--display); font-weight:800; font-size:clamp(1.4rem,2.5vw,2rem); color:var(--off-white); letter-spacing:-1px; line-height:1.1; margin-bottom:2rem; }
-  .step-question .q-accent { color:var(--acid-yellow); }
-
-  .options-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:0.75rem; }
-  .options-grid.two-col { grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
-  .opt-btn { background:transparent; border:2px solid rgba(245,240,232,0.15); color:var(--off-white); font-family:var(--body); font-size:14px; text-align:left; padding:1rem 1.25rem; cursor:pointer; transition:all 0.15s; position:relative; line-height:1.4; width:100%; }
-  .opt-btn:hover { background:var(--acid-yellow); color:var(--black); border-color:var(--acid-yellow); }
-  .opt-btn .opt-icon { display:block; font-size:18px; margin-bottom:0.4rem; line-height:1; }
-  .opt-btn .opt-label { display:block; font-weight:600; font-size:15px; margin-bottom:0.2rem; }
-  .opt-btn .opt-desc { display:block; font-size:12px; opacity:0.65; line-height:1.4; }
-  .opt-btn:hover .opt-desc { opacity:0.75; }
-
-  .back-btn { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; background:transparent; border:none; color:rgba(245,240,232,0.3); cursor:pointer; padding:0; margin-top:1.5rem; display:inline-flex; align-items:center; gap:0.5rem; transition:color 0.15s; }
-  .back-btn:hover { color:var(--off-white); }
-  .back-btn::before { content:'←'; }
-
-  .breadcrumb { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:2rem; min-height:24px; }
-  .crumb { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:1px; padding:3px 10px; background:rgba(212,255,0,0.08); color:var(--acid-yellow); border:1px solid rgba(212,255,0,0.2); display:flex; align-items:center; gap:0.4rem; }
-  .crumb::after { content:'›'; opacity:0.4; margin-left:0.2rem; }
-  .crumb:last-child::after { display:none; }
-
-  .result-card { background:#111; border:2px solid var(--acid-yellow); padding:2.5rem; position:relative; animation:resultIn 0.4s ease; }
-  .result-card::after { content:''; position:absolute; bottom:-6px; right:-6px; width:100%; height:100%; background:var(--acid-yellow); z-index:-1; }
-  @keyframes resultIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
-  @keyframes stepIn { from{opacity:0;transform:translateX(16px)} to{opacity:1;transform:none} }
-  .step-inner { animation:stepIn 0.3s ease; }
-
-  .result-tag { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; padding:4px 12px; background:var(--acid-yellow); color:var(--black); display:inline-block; margin-bottom:1.5rem; font-weight:700; }
-  .result-tool-badge { display:inline-flex; align-items:center; gap:0.6rem; padding:0.5rem 1rem; border:2px solid var(--acid-yellow); margin-bottom:1.5rem; }
-  .tool-dot { width:28px; height:28px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:700; font-size:11px; }
-  .tool-dot.claude  { background:#d97c52; color:#fff; }
-  .tool-dot.chatgpt { background:#10a37f; color:#fff; }
-  .tool-dot.gemini  { background:#4285f4; color:#fff; }
-  .tool-dot.copilot { background:#0078d4; color:#fff; }
-  .result-tool-name { font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:2px; color:var(--acid-yellow); font-weight:700; }
-  .result-why { font-size:14px; color:rgba(245,240,232,0.6); font-style:italic; margin-bottom:2rem; line-height:1.6; padding-left:1rem; border-left:3px solid var(--hot-pink); }
-  .result-title { font-family:var(--display); font-weight:800; font-size:clamp(1.5rem,3vw,2.2rem); color:var(--off-white); letter-spacing:-1px; line-height:1.1; margin-bottom:0.5rem; }
-  .result-desc { font-size:14px; color:rgba(245,240,232,0.55); margin-bottom:2rem; line-height:1.7; }
-
-  .result-prompt-wrap { background:#0a0a0a; border:2px solid var(--hot-pink); padding:1.5rem; position:relative; margin-bottom:1.5rem; }
-  .prompt-label-tag { position:absolute; top:0; left:1rem; transform:translateY(-50%); background:var(--hot-pink); color:#fff; font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:2px; padding:3px 10px; font-weight:700; }
-  .prompt-text { font-family:var(--mono); font-size:12px; color:var(--off-white); line-height:1.8; white-space:pre-wrap; word-break:break-word; }
-  .prompt-text .var { color:var(--hot-pink); font-style:italic; }
-  .copy-prompt-btn { position:absolute; bottom:0.75rem; right:0.75rem; font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:1px; background:transparent; border:1px solid rgba(245,240,232,0.2); color:rgba(245,240,232,0.4); padding:4px 10px; cursor:pointer; transition:all 0.15s; }
-  .copy-prompt-btn:hover { border-color:var(--acid-yellow); color:var(--acid-yellow); }
-
-  .result-tips { margin-bottom:2rem; }
-  .tips-heading { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--hot-pink); margin-bottom:0.75rem; }
-  .tip-item { display:flex; gap:0.75rem; align-items:flex-start; padding:0.5rem 0; border-bottom:1px solid rgba(245,240,232,0.06); font-size:13px; color:rgba(245,240,232,0.65); line-height:1.5; }
-  .tip-item::before { content:'►'; font-size:8px; color:var(--acid-yellow); flex-shrink:0; margin-top:4px; }
-
-  .result-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; padding-top:2rem; border-top:1px solid rgba(245,240,232,0.08); }
-  .btn-restart { font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:2px; padding:0.8rem 1.5rem; background:transparent; border:2px solid var(--off-white); color:var(--off-white); cursor:pointer; transition:all 0.15s; }
-  .btn-restart:hover { background:var(--off-white); color:var(--black); }
-  .btn-explore { font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:2px; padding:0.8rem 1.5rem; background:var(--acid-yellow); border:2px solid var(--acid-yellow); color:var(--black); cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s; }
-  .btn-explore:hover { background:transparent; color:var(--acid-yellow); }
-
-  @media(max-width:600px){
-    .options-grid,.options-grid.two-col { grid-template-columns:1fr; }
-    #adventure { padding:3rem 1.25rem; }
-    .step-card,.result-card { padding:1.5rem; }
-  }
-</style>
-</head>
-<body>
 
 <section id="adventure">
   <div class="adv-container">
@@ -2095,17 +2077,8 @@ function doCopy(btn) {
 }
 renderStep(0);
 </script>
-</body>
-</html>
-  ...end of the blog page div...
-
-<!-- ==================== ADVENTURE PAGE ==================== -->
-<div id="page-adventure" class="page">
-  ... all the adventure content ...
 </div>
 
-<!-- FOOTER -->
-<footer>
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -2212,8 +2185,25 @@ function showPage(pageId) {
   if (page) page.classList.add('active');
   const navEl = document.getElementById('nav-' + pageId);
   if (navEl) navEl.classList.add('active');
+  if (('#' + pageId) !== window.location.hash) {
+    window.location.hash = pageId;
+  }
   window.scrollTo(0,0);
 }
+
+window.addEventListener('hashchange', function() {
+  const pageId = (window.location.hash || '#home').slice(1);
+  if (document.getElementById('page-' + pageId)) {
+    showPage(pageId);
+  }
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+  const initial = (window.location.hash || '#home').slice(1);
+  if (document.getElementById('page-' + initial)) {
+    showPage(initial);
+  }
+});
 
 function switchToolTab(tabId, btn) {
   document.querySelectorAll('#page-tools .tab-content').forEach(t => t.classList.remove('active'));
